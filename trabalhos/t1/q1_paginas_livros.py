@@ -5,6 +5,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+
+def sturges(n):
+    """Calcula a quantidade de bins para histogramas utilizando a regra de Sturges."""
+    return math.ceil((np.log2(n)) + 1)
+
 gerador = np.random.default_rng(1625)
 
 P = np.array(range(150, 301))
@@ -42,7 +47,7 @@ for amostra in amostras:
 medias_amostras = np.array(medias_amostras)
 
 fig, ax = plt.subplots()
-ax.hist(medias_amostras, linewidth=0.5, edgecolor="white")
+ax.hist(medias_amostras, bins=sturges(qtd_amostras_n2), linewidth=0.5, edgecolor="white")
 ax.set_title("Distribuição das médias amostrais de X\nTamanho de amostra n = 2")
 ax.set_xlabel("Média da amostra")
 ax.set_ylabel("Frequência")
@@ -70,7 +75,7 @@ for amostra in amostras_n9:
     medias_amostras_n9.append(media)
 
 fig, ax = plt.subplots()
-ax.hist(medias_amostras_n9, linewidth=0.5, edgecolor="white")
+ax.hist(medias_amostras_n9, bins=sturges(qtd_amostras_n9), linewidth=0.5, edgecolor="white")
 ax.set_title("Distribuição das médias amostrais de X\nTamanho de amostra n = 9")
 ax.set_xlabel("Média da amostra")
 ax.set_ylabel("Frequência")
