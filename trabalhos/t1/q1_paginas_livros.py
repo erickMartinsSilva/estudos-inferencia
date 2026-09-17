@@ -1,14 +1,10 @@
 import json
 import math
+from itertools import product
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-
-
-def sturges(n):
-    """Calcula a quantidade de bins para histogramas utilizando a regra de Sturges."""
-    return math.ceil((np.log2(n)) + 1)
 
 gerador = np.random.default_rng(1625)
 
@@ -38,7 +34,7 @@ print(f"Média populacional: {mu.round(2)}; Variância populacional: {sigma_squa
 # iii. Construção de amostras de tamanho 2
 tamanho_amostra_n2 = 2
 qtd_amostras_n2 = len_P ** tamanho_amostra_n2
-amostras = gerador.choice(P, size=(qtd_amostras_n2, tamanho_amostra_n2), replace=True)
+amostras = np.array(list(product(P, repeat=tamanho_amostra_n2)))
 
 medias_amostras = []
 for amostra in amostras:
@@ -47,7 +43,7 @@ for amostra in amostras:
 medias_amostras = np.array(medias_amostras)
 
 fig, ax = plt.subplots()
-ax.hist(medias_amostras, bins=sturges(qtd_amostras_n2), linewidth=0.5, edgecolor="white")
+ax.hist(medias_amostras, bins="fd", linewidth=0.5, edgecolor="white")
 ax.set_title("Distribuição das médias amostrais de X\nTamanho de amostra n = 2")
 ax.set_xlabel("Média da amostra")
 ax.set_ylabel("Frequência")
@@ -75,7 +71,7 @@ for amostra in amostras_n9:
     medias_amostras_n9.append(media)
 
 fig, ax = plt.subplots()
-ax.hist(medias_amostras_n9, bins=sturges(qtd_amostras_n9), linewidth=0.5, edgecolor="white")
+ax.hist(medias_amostras_n9, bins="fd", linewidth=0.5, edgecolor="white")
 ax.set_title("Distribuição das médias amostrais de X\nTamanho de amostra n = 9")
 ax.set_xlabel("Média da amostra")
 ax.set_ylabel("Frequência")
