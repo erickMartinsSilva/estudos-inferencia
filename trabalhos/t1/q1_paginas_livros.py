@@ -15,7 +15,7 @@ gerador = np.random.default_rng(1625)
 P = np.array(range(150, 301))
 len_P = len(P)
 
-# pela definição da questão, os elementos do conjunto possuem a mesma probabilidade
+# elementos possuem a mesma probabilidade
 prob = (1/len_P) * 100
 
 # i. Gráfico de função de probabilidade de X
@@ -35,7 +35,7 @@ sigma_squared = P.var()
 sigma = math.sqrt(sigma_squared)
 print(f"Média populacional: {mu.round(2)}; Variância populacional: {sigma_squared.round(2)}; Desvio padrão amostral: {np.float64(sigma).round(2)}.")
 
-# iii. Construção das amostras
+# iii. Construção de amostras de tamanho 2
 tamanho_amostra_n2 = 2
 qtd_amostras_n2 = len_P ** tamanho_amostra_n2
 amostras = gerador.choice(P, size=(qtd_amostras_n2, tamanho_amostra_n2), replace=True)
@@ -87,7 +87,7 @@ mu_n9 = medias_amostras_n9.mean()
 mu_n9_teorico = mu
 sigma_squared_n9 = medias_amostras_n9.var(ddof=0)
 sigma_n9 = math.sqrt(sigma_squared_n9)
-sigma_n9_teorico = sigma / 3 # raiz quadrada de 9
+sigma_n9_teorico = sigma / 3
 
 resultados_dict = {
     "pop_mean": mu,
