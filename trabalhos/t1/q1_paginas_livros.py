@@ -1,8 +1,9 @@
-import pandas as pd
+import json
+import math
+
 import matplotlib.pyplot as plt
 import numpy as np
-import math
-import json
+import pandas as pd
 
 gerador = np.random.default_rng(1625)
 
@@ -17,6 +18,7 @@ probabilidades_df = pd.DataFrame([{ "value": p, "prob": prob } for p in P])
 
 fig, ax = plt.subplots()
 ax.bar(probabilidades_df["value"], probabilidades_df["prob"], width=1)
+ax.set_title("Gráfico da função de probabilidade de X")
 ax.set_xlabel("Quantidade de páginas")
 ax.set_ylabel("Probabilidade (%)")
 fig.savefig("./q1_populacao.png")
@@ -30,7 +32,7 @@ print(f"Média populacional: {mu.round(2)}; Variância populacional: {sigma_squa
 
 # iii. Construção das amostras
 tamanho_amostra_n2 = 2
-qtd_amostras_n2 = len_P ** 2
+qtd_amostras_n2 = len_P ** tamanho_amostra_n2
 amostras = gerador.choice(P, size=(qtd_amostras_n2, tamanho_amostra_n2), replace=True)
 
 medias_amostras = []
@@ -41,6 +43,7 @@ medias_amostras = np.array(medias_amostras)
 
 fig, ax = plt.subplots()
 ax.hist(medias_amostras, linewidth=0.5, edgecolor="white")
+ax.set_title("Distribuição das médias amostrais de X\nTamanho de amostra n = 2")
 ax.set_xlabel("Média da amostra")
 ax.set_ylabel("Frequência")
 fig.savefig("./q1_n2.png")
@@ -68,6 +71,7 @@ for amostra in amostras_n9:
 
 fig, ax = plt.subplots()
 ax.hist(medias_amostras_n9, linewidth=0.5, edgecolor="white")
+ax.set_title("Distribuição das médias amostrais de X\nTamanho de amostra n = 9")
 ax.set_xlabel("Média da amostra")
 ax.set_ylabel("Frequência")
 fig.savefig("./q1_n9.png")
