@@ -4,3 +4,6 @@ venv
 # resultados de scripts
 *.png
 *.json
+
+# respostas de questões
+RESPOSTAS.md
