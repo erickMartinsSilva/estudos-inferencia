@@ -1,3 +1,6 @@
+# ambiente virtual
+venv
+
 # resultados de scripts
 *.png
 *.json
