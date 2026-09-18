@@ -1,9 +1,9 @@
-# ambiente virtual
+# python
+__pycache__
 venv
 
 # resultados de scripts
-*.png
-*.json
+resultados
 
 # respostas de questões
 RESPOSTAS.md
