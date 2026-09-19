@@ -62,7 +62,7 @@ proporcao_superestimacao = np.mean(estimativas > N)
 
 # iv.
 variancia_empirica_estimativas = estimativas.var(ddof=0)
-desv_padrao_empirico_estimativas = math.sqrt(variancia_empirica_estimativas)
+desv_padrao_empirico_estimativas = estimativas.std(ddof=0)
 
 
 # v.
@@ -78,13 +78,17 @@ for k_atual in valores_k:
     estimativas_np = np.array(estimativas)
     media = estimativas_np.mean()
     vies = media - N
-    variancia = estimativas_np.var()
-    desv_padrao = math.sqrt(variancia)
+    variancia = estimativas_np.var(ddof=0)
+    desv_padrao = estimativas_np.std(ddof=0)
     diff_valor_N_quadrado_acc = 0
     
     for e in estimativas_np:
         diff_valor_N_quadrado_acc += (e - N) ** 2
     rmse = math.sqrt((1/qtd_simulacoes) * diff_valor_N_quadrado_acc)
+
+    proporcao_subestimacao = np.mean(estimativas_np < N)
+    proporcao_igualdade = np.mean(estimativas_np == N)
+    proporcao_superestimacao = np.mean(estimativas_np > N)
 
     # vi.
     mc_inferior, mc_superior = np.quantile(
@@ -100,6 +104,9 @@ for k_atual in valores_k:
         "variance": variancia,
         "sd": desv_padrao,
         "rmse": rmse,
+        "underestimate_rate": proporcao_subestimacao,
+        "equal_rate": proporcao_igualdade,
+        "overestimate_rate": proporcao_superestimacao,
         "central_range95": (mc_inferior, mc_superior),
         "contains_true_N": bool(mc_inferior <= N and mc_superior >= N)
     }
