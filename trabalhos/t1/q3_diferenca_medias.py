@@ -39,7 +39,6 @@ plt.close()
 # ii.
 media_empirica_Md = valores_Md.mean()
 desv_padrao_empirico_Md = valores_Md.std(ddof=0)
-# TODO: comparar com valores populacionais
 
 # iii.
 
