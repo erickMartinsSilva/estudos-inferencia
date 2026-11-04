@@ -45,12 +45,7 @@ axis2.set_xlabel("Consumo (mpg)")
 fig.savefig(output_file)
 plt.close()
 
-# ii. Os procedimentos paramétricos de testes de hipóteses sobre duas amostras que estudamos em nosso curso
-# presumem que as amostras a serem usadas são provenientes
-# de uma distribuição aproximadamente normal. Para cada uma das amostras fornecidas, verifique essa
-# hipótese usando dois dos testes de normalidades que estudamos
-# no curso. Para isso, use um nível de significância igual a 5%.
-
+# ii.
 amostras = [
     {
         "nome": "automatico",
@@ -86,14 +81,7 @@ for amostra in amostras:
         "evidencia_contra_normalidade": "Sim" if normality_test.pvalue < alpha else "Nao"
     }
 
-# iii. Presumindo que os dados da coluna mpg seguem a distribuição normal, determine
-# um intervalo de confiança no nível 95% da diferença entre as médias dos modelos de
-# carros que possuem transmissão automática e os que possuem transmissão manual.
-# Assuma variâncias populacionais desconhecidas e não necessariamente iguais.
-
-# IC bilateral de Welch para mu_manual - mu_automatico.
-# Amostras independentes: combinar variâncias, sem subtrair observações.
-# SciPy calcula erro padrão e graus de liberdade de Welch usando a distribuição t.
+# iii. 
 confidence_level = 0.95
 welch_ci95 = stats.ttest_ind(
     consumo_manuais,
@@ -102,17 +90,7 @@ welch_ci95 = stats.ttest_ind(
     alternative="two-sided"
 ).confidence_interval(confidence_level=confidence_level)
 
-# iv. Suponha que, ao analisar os dados fornecidos, alguém levantou a alegação de que
-# carros automáticos e manuais não apresentam a mesma eficiência relativa a consumo
-# de combustível. Em particular, existe a suspeita de que carros com transmissão
-# manual apresentam, em média, maior valor de mpg do que carros com transmissão
-# automática. Aplique um teste de hipóteses para verificar essa suspeita. Apresente
-# e descreva claramente a aplicação dos quatro passos do procedimento. Repare que
-# são fornecidas duas amostras independentes. Sendo assim, certifique-se de usar o
-# teste de hipóteses adequado para essa situação. Apresente sua análise para o nível
-# de significância igual a 5%. Assuma variâncias populacionais desconhecidas e não
-# necessariamente iguais.
-
+# iv. 
 # duas amostras independentes: t-teste de Welch
 
 # -- DEFINIÇÃO DAS HIPÓTESES --
