@@ -168,4 +168,4 @@ resultados = {
 }
 
 output_file = Path("./resultados/q2_resultados.json")
-output_file.write_text(json.dumps(resultados, indent=4))
+output_file.write_text(json.dumps(resultados, indent=4), encoding="utf-8")

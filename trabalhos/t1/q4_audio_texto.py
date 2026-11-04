@@ -81,9 +81,9 @@ graus_liberdade_welch = (
     )
 )
 
-t_critico_welch = stats.t.ppf(0.975, df=graus_liberdade_welch)
+t_critico_welch = stats.t.ppf((1 + 0.99) / 2, df=graus_liberdade_welch)
 margem_erro_welch = t_critico_welch * erro_padrao_welch
-IC_welch_95 = (
+IC_welch_99 = (
     diferenca_medias - margem_erro_welch,
     diferenca_medias + margem_erro_welch
 )
@@ -117,9 +117,9 @@ resultados = {
         condition_info[0]["intervalo_99"][0],
         condition_info[0]["intervalo_99"][1]
     ],
-    "ci95_difference_welch": [
-        IC_welch_95[0],
-        IC_welch_95[1]
+    "ci99_difference_welch": [
+        IC_welch_99[0],
+        IC_welch_99[1]
     ]
 }
 
@@ -127,4 +127,5 @@ output_file = Path("./resultados/q4_resultados.json")
 output_file.parent.mkdir(exist_ok=True, parents=True)
 output_file.write_text(
     json.dumps(resultados, indent=4),
+    encoding="utf-8",
 )

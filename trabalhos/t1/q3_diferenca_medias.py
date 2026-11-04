@@ -45,7 +45,7 @@ desv_padrao_empirico_Md = valores_Md.std(ddof=0)
 z_score = (15 - media_Md_teorico) / desv_padrao_Md_teorico
 p_md_maior_que_15_teorico = 1 - norm.cdf(z_score)
  
-p_md_maior_que_15_estimativa = np.mean(np.array(valores_Md) > 15)
+p_md_maior_que_15_estimativa = np.mean(np.array(valores_Md) >= 15)
 
 resultados = {
     "num_simulations": qtd_simulacoes,
@@ -59,5 +59,4 @@ resultados = {
 
 output_file = Path("./resultados/q3_resultados.json")
 output_file.parent.mkdir(exist_ok=True, parents=True)
-output_file.write_text(json.dumps(resultados, indent=4))
-
+output_file.write_text(json.dumps(resultados, indent=4), encoding="utf-8")

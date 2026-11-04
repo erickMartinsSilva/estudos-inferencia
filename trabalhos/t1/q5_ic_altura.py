@@ -41,4 +41,5 @@ output_file = Path("./resultados/q5_resultados.json")
 output_file.parent.mkdir(exist_ok=True, parents=True)
 output_file.write_text(
     json.dumps(resultados, indent=4),
+    encoding="utf-8",
 )
